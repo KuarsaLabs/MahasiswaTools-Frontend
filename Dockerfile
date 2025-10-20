@@ -13,6 +13,9 @@ RUN bun install
 # @note copy source code to container
 COPY . .
 
+# @note instapp dependencies again
+RUN bun install
+
 # @note build application for production
 RUN bun run build
 
