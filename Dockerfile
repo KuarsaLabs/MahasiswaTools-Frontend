@@ -23,4 +23,4 @@ RUN bun run build
 EXPOSE 4173
 
 # @note serve the built application
-CMD ["bun", "run", "preview"]
+CMD ["bun", "run", "start"]
