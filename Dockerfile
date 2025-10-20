@@ -17,7 +17,7 @@ COPY . .
 RUN bun run build
 
 # @note expose port 4173 (vite preview default port)
-EXPOSE 4173
+EXPOSE 3000
 
 # @note serve the built application using bun
-CMD ["bun", "run", "preview"]
+CMD ["bun", "run", "start"]
