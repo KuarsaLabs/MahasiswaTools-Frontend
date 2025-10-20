@@ -32,12 +32,10 @@ function DashboardContent({}: DashboardContentProps) {
   );
 }
 
-interface DashboardLayoutProps {
-  children?: React.ReactNode;
-}
+interface DashboardLayoutProps {}
 
 // @note main dashboard layout component
-export function DashboardLayout({ children }: DashboardLayoutProps) {
+export function DashboardLayout({}: DashboardLayoutProps) {
   return (
     <PageProvider>
       <SidebarProvider>

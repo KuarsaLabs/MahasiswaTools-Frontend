@@ -5,7 +5,6 @@ import { NavMain } from './nav-main';
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,

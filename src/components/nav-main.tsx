@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ChevronDown } from 'lucide-react';
 
 import {
   SidebarGroup,
@@ -8,11 +7,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
 } from './ui/sidebar';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 import { usePage } from './sidebar-provider';
 
 interface NavItem {
@@ -47,7 +42,7 @@ export function NavMain({ items }: NavMainProps) {
           <React.Fragment key={i}>
             {item.title && <SidebarGroupLabel>{item.title}</SidebarGroupLabel>}
             <SidebarMenu>
-              {item.items.map((navItem, index) => (
+              {item.items.map((navItem) => (
                 <SidebarMenuItem key={navItem.title}>
                   <SidebarMenuButton
                     isActive={activePage === navItem.id}
