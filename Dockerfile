@@ -20,7 +20,7 @@ RUN bun install
 RUN bun run build
 
 # @note expose port for vite preview server
-EXPOSE 4173
+EXPOSE 3000
 
 # @note serve the built application
 CMD ["bun", "run", "start"]
