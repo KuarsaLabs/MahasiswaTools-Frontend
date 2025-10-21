@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Brain, Home, Settings } from 'lucide-react';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import { NavMain } from './nav-main';
 import {
@@ -11,20 +12,25 @@ import {
   SidebarMenuItem,
 } from './ui/sidebar';
 
-// @note sidebar data with simplified navigation
+// @note sidebar data with routing-based navigation
 const sidebarData = {
   navMain: [
     {
       title: 'Main',
       items: [
         {
+          title: 'Dashboard',
+          url: '/',
+          icon: Home,
+        },
+        {
           title: 'General',
-          id: 'general',
+          url: '/general',
           icon: Home,
         },
         {
           title: 'Settings',
-          id: 'settings',
+          url: '/settings',
           icon: Settings,
         },
       ],

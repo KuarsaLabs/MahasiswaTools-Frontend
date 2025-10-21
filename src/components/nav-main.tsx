@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import {
   SidebarGroup,
@@ -8,16 +9,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from './ui/sidebar';
-import { usePage } from './sidebar-provider';
 
 interface NavItem {
   title: string;
-  id: string;
+  url: string;
   icon?: React.ComponentType<{ className?: string }>;
-  items?: {
-    title: string;
-    id: string;
-  }[];
 }
 
 interface NavMainProps {
@@ -27,13 +23,9 @@ interface NavMainProps {
   }[];
 }
 
-// @note navigation main component with state-based selection
+// @note navigation main component with routing-based selection
 export function NavMain({ items }: NavMainProps) {
-  const { activePage, setActivePage } = usePage();
-
-  const handleNavClick = (itemId: string) => {
-    setActivePage(itemId);
-  };
+  const location = useLocation();
 
   return (
     <SidebarGroup>
@@ -45,12 +37,14 @@ export function NavMain({ items }: NavMainProps) {
               {item.items.map((navItem) => (
                 <SidebarMenuItem key={navItem.title}>
                   <SidebarMenuButton
-                    isActive={activePage === navItem.id}
-                    onClick={() => handleNavClick(navItem.id)}
+                    isActive={location.pathname === navItem.url}
                     className="cursor-pointer"
+                    asChild
                   >
-                    {navItem.icon && <navItem.icon />}
-                    <span>{navItem.title}</span>
+                    <NavLink to={navItem.url}>
+                      {navItem.icon && <navItem.icon />}
+                      <span>{navItem.title}</span>
+                    </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

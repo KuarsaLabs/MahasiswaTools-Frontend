@@ -7,39 +7,49 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from './ui/breadcrumb';
-import { usePage } from './sidebar-provider';
+import { useLocation } from 'react-router-dom';
+import { ThemeToggle } from './theme-toggle';
 
-// @note site header component with state-based breadcrumbs
+// @note site header component with routing-based breadcrumbs
 export function SiteHeader() {
-  const { activePage } = usePage();
+  const location = useLocation();
 
-  // @note generate breadcrumb from active page
-  const getPageTitle = (pageId: string) => {
+  // @note generate breadcrumb from current route
+  const getPageTitle = (pathname: string) => {
     const pageTitles: { [key: string]: string } = {
-      general: 'General',
-      settings: 'Settings',
+      '/': 'Dashboard',
+      '/general': 'General',
+      '/settings': 'Settings',
     };
-    return pageTitles[pageId] || pageId;
+    return pageTitles[pathname] || pathname;
   };
 
   return (
     <header className="flex h-12 shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-      <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
-        <SidebarTrigger className="-ml-1" />
-        <Separator orientation="vertical" className="mx-2 data-[orientation=vertical]:h-4" />
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbPage>Home</BreadcrumbPage>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage className="capitalize">
-                {getPageTitle(activePage)}
-              </BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+      <div className="flex w-full items-center justify-between px-4 lg:px-6">
+        <div className="flex items-center gap-1 lg:gap-2">
+          <SidebarTrigger className="-ml-1" />
+          <Separator
+            orientation="vertical"
+            className="mx-2 data-[orientation=vertical]:h-4"
+          />
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbPage>Home</BreadcrumbPage>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage className="capitalize">
+                  {getPageTitle(location.pathname)}
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+        <div className="flex items-center">
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );
