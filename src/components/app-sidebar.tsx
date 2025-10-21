@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Brain, Home, Settings } from 'lucide-react';
-import { NavLink, useLocation } from 'react-router-dom';
 
 import { NavMain } from './nav-main';
 import {
