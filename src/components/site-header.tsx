@@ -18,17 +18,17 @@ export function SiteHeader() {
   const getPageTitle = (pathname: string) => {
     const pageTitles: { [key: string]: string } = {
       '/': 'Dashboard',
-      '/general': 'General',
-      '/settings': 'Settings',
+      '/makalah-maker': 'Makalah Maker',
+      '/settings': 'Pengaturan',
     };
     return pageTitles[pathname] || pathname;
   };
 
   return (
-    <header className="flex h-12 shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+    <header className="flex h-16 md:h-14 shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-16">
       <div className="flex w-full items-center justify-between px-4 lg:px-6">
         <div className="flex items-center gap-1 lg:gap-2">
-          <SidebarTrigger className="-ml-1" />
+          <SidebarTrigger className="ml-2 md:-ml-1" />
           <Separator
             orientation="vertical"
             className="mx-2 data-[orientation=vertical]:h-4"
@@ -36,7 +36,7 @@ export function SiteHeader() {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbPage>Home</BreadcrumbPage>
+                <BreadcrumbPage>Beranda</BreadcrumbPage>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
@@ -48,7 +48,9 @@ export function SiteHeader() {
           </Breadcrumb>
         </div>
         <div className="flex items-center">
-          <ThemeToggle />
+          <div className="rounded-lg bg-white/10 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </header>
